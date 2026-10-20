@@ -11,12 +11,8 @@ loadButton.addEventListener('click', loadUsers);
 
 async function loadUsers() {
 	// 1. REQUEST: ask the server for the data
-	const response = await fetch(API_URL);
 	// 2. CHECK: did the server say yes?
-
 	// 3. UNPACK: turn the JSON text into JavaScript data
-	const users = await response.json();
-	console.log(users);
 	// 4. DISPLAY: put the data on the page
 }
 
