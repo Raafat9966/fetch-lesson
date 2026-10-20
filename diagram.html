@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How a page gets data from an API</title>
+  <style>
+    body { margin: 0; background: #fff; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    svg { width: 100%; height: auto; display: block; }
+    .name { font-size: 22px; font-weight: 700; fill: #1d2330; }
+    .code { font-size: 17px; font-family: ui-monospace, Consolas, monospace; fill: #2f5bea; }
+    .analogy { font-size: 16px; font-style: italic; fill: #5b6375; }
+    .label { font-size: 16px; fill: #5b6375; }
+    .title { font-size: 26px; font-weight: 700; fill: #1d2330; }
+  </style>
+</head>
+<body>
+<main>
+<svg viewBox="0 0 1000 560" role="img" aria-label="The page asks, the server answers, the page checks before it shows">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a93a6"/></marker>
+    <marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e0a100"/></marker>
+  </defs>
+
+  <text class="title" x="30" y="44">The page asks, the server answers, the page checks before it shows</text>
+
+  <!-- connectors: boxes are 260 wide, 96 tall; centres x = 200, 500, 800 -->
+  <g fill="none" stroke="#8a93a6" stroke-width="2">
+    <path d="M330 150H370" marker-end="url(#a)"/>
+    <path d="M630 150H670" marker-end="url(#a)"/>
+    <path d="M800 198V246H200V294" marker-end="url(#a)"/>
+    <path d="M330 342H370" marker-end="url(#a)"/>
+    <path d="M630 342H670" marker-end="url(#a)"/>
+  </g>
+  <g fill="none" stroke="#e0a100" stroke-width="2">
+    <path d="M200 390V438" marker-end="url(#f)"/>
+    <path d="M70 150H46V486H70" stroke-dasharray="6 6" marker-end="url(#f)"/>
+  </g>
+
+  <!-- row 1: across the network -->
+  <rect x="70" y="102" width="260" height="96" rx="12" fill="#fff" stroke="#8a93a6" stroke-width="2"/>
+  <text class="name" x="200" y="136" text-anchor="middle">1 · Request</text>
+  <text class="code" x="200" y="162" text-anchor="middle">fetch(API_URL)</text>
+  <text class="analogy" x="200" y="186" text-anchor="middle">you place the order</text>
+
+  <rect x="370" y="102" width="260" height="96" rx="12" fill="#eef0f4" stroke="#8a93a6" stroke-width="2"/>
+  <text class="name" x="500" y="136" text-anchor="middle">API server</text>
+  <text class="code" x="500" y="162" text-anchor="middle">GET /users</text>
+  <text class="analogy" x="500" y="186" text-anchor="middle">the kitchen you never enter</text>
+
+  <rect x="670" y="102" width="260" height="96" rx="12" fill="#fff" stroke="#8a93a6" stroke-width="2"/>
+  <text class="name" x="800" y="136" text-anchor="middle">2 · Response</text>
+  <text class="code" x="800" y="162" text-anchor="middle">status + JSON text</text>
+  <text class="analogy" x="800" y="186" text-anchor="middle">the box with its label</text>
+
+  <text class="label" x="500" y="238" text-anchor="middle">the answer travels back to the page</text>
+
+  <!-- row 2: on the page -->
+  <rect x="70" y="294" width="260" height="96" rx="12" fill="#fff" stroke="#8a93a6" stroke-width="2"/>
+  <text class="name" x="200" y="328" text-anchor="middle">3 · Check</text>
+  <text class="code" x="200" y="354" text-anchor="middle">response.ok?</text>
+  <text class="analogy" x="200" y="378" text-anchor="middle">read the label</text>
+
+  <text class="label" x="350" y="330" text-anchor="middle">ok</text>
+
+  <rect x="370" y="294" width="260" height="96" rx="12" fill="#fff" stroke="#8a93a6" stroke-width="2"/>
+  <text class="name" x="500" y="328" text-anchor="middle">4 · Unpack</text>
+  <text class="code" x="500" y="354" text-anchor="middle">await response.json()</text>
+  <text class="analogy" x="500" y="378" text-anchor="middle">open the box</text>
+
+  <rect x="670" y="294" width="260" height="96" rx="12" fill="#e8eefe" stroke="#2f5bea" stroke-width="3"/>
+  <text class="name" x="800" y="328" text-anchor="middle">5 · Display</text>
+  <text class="code" x="800" y="354" text-anchor="middle">forEach + append</text>
+  <text class="analogy" x="800" y="378" text-anchor="middle">put it on the plate</text>
+
+  <!-- failures -->
+  <text class="label" x="212" y="420">not ok (404, 500)</text>
+  <text class="label" x="34" y="318" text-anchor="middle" transform="rotate(-90 34 318)">no answer at all</text>
+
+  <rect x="70" y="438" width="260" height="96" rx="12" fill="#fff6dc" stroke="#e0a100" stroke-width="3"/>
+  <text class="name" x="200" y="472" text-anchor="middle">Something failed</text>
+  <text class="code" x="200" y="498" text-anchor="middle">catch</text>
+  <text class="analogy" x="200" y="522" text-anchor="middle">say sorry, politely</text>
+</svg>
+</main>
+</body>
+</html>

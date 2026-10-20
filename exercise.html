@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise: Posts by User</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Posts by User</h1>
+      <p class="intro">Type a user ID (1 to 10) and load that person's posts.</p>
+      <label for="user-id">User ID</label>
+      <input id="user-id" type="number" min="1" value="1">
+      <button id="load-posts-btn" type="button">Load posts</button>
+      <p id="status" aria-live="polite"></p>
+    </header>
+
+    <ul id="post-list" class="post-list"></ul>
+  </main>
+
+  <!-- Your work: exercise.js. Solution: exercise.solution.js -->
+  <script src="exercise.js"></script>
+</body>
+</html>
